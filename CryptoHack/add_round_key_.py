@@ -1,7 +1,3 @@
-def matrix2bytes(matrix):
-    """ Converts a 4x4 matrix into a 16-byte array.  """
-    return bytes(sum(matrix,[]))
-
 state = [
     [206, 243, 61, 34],
     [171, 11, 93, 31],
@@ -18,10 +14,10 @@ round_key = [
 
 
 def add_round_key(s, k):
+    for x in range(4):
+        for y in range(4):
+            print(chr(s[x][y] ^ k[x][y]),end="") # using chr() the rusult to a character & (end="") output will print on the same line
 
-    s[x][y] = s[x][y] ^ k[x][y]
-    
-    return s
 
-print(matrix2bytes(add_round_key(state, round_key)))
 
+print(add_round_key(state, round_key))
